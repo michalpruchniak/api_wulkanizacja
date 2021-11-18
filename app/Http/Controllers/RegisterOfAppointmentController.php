@@ -29,6 +29,7 @@ class RegisterOfAppointmentController extends Controller
         $appointment = Appointments::registeremAppointment($request->licence);          
         $appointment->licence_plate = null;
         $appointment->save();
+        return 'Zrezygnowales z zaplanowanego terminu';
     }
 
 }
