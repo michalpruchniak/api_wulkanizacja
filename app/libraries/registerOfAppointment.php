@@ -1,40 +1,56 @@
 <?php
 namespace App\libraries;
+
+use App\libraries\validationAppointment;
+use App\Models\Appointments;
 use Exception;
 
-use App\Models\Appointments;
-
-class validationAppoinment {
-    private $appointment;
-    public function __construct($id){
-        $this->appointment = Appointments::find($id);
-    }
-
-    public function appointmentExist(){
-        if(isset($this->appointment)){
-            return true;
-        } else {
-            
-            throw new Exception('Coś nie działa');
-
-        }
-    }
-}
-
-
 class registerOfAppointment {
-    private String $licence;
-    public function __construct(String $licence){
+    private $id;
+    private $licence;
+    public function __construct($licence=null, $id=null ){
+        $this->id = $id;
         $this->licence = $licence;
     }
 
     public function register(){
         try{
-            $validation = new validationAppoinment(1);
-            $validation->appointmentExist();
-            return 'Hello';
-        } catch(Exception $e) {
-            echo $e;
+            $validation = new validationAppointment($this->licence, $this->id);
+            $validation->validate();
+
+            $this->storeLicence();
+            return 'Termin zostal zarezerwowany';
+        } catch(Exception $exception) {
+            return $exception->getMessage();
         }
+    }
+    public function registerOnFirstFreeAppointment(){
+        try{
+            $appointment = Appointments::firstFreeAppointment();
+            // dd($appointment);
+            if(isset($appointment)){
+                $validation = new validationAppointment($this->licence, $appointment->id);
+                $validation->validate();
+                $this->id = $appointment->id;
+                $this->storeLicence();
+                return 'Termin zostal zarezerwowany';
+            } else {
+                return 'Brak wolnych terminow';
+            }
+            
+        } catch(Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    private function storeLicence(){
+        try {
+            $appointment = Appointments::find($this->id);
+            $appointment->licence_plate = $this->licence;
+            $appointment->save();
+        } catch(Exception $exception) {
+            return $exception->getMessage();
+        }
+        
     }
 }

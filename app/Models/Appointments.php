@@ -9,12 +9,19 @@ use Carbon\Carbon;
 class Appointments extends Model
 {
     use HasFactory;
-protected $fillable = ['appointment', 'reservation_id'];
-    public function freeAppointments() {
+    protected $fillable = ['appointment', 'reservation_id'];
+        public function freeAppointments() {
+            $freeApointment = static::where('licence_plate', null)
+                                    ->where('appointment','>',Carbon::now())
+                                    ->get();
+            return $freeApointment;
+    }
+    
+    public function firstFreeAppointment() {
         $freeApointment = static::where('licence_plate', null)
-                                ->where('appointment','>',Carbon::now())
-                                ->get();
-        return json_encode($freeApointment);
+                                ->orderBy('appointment', 'asc')
+                                ->first();
+        return $freeApointment;
     }
 
 

@@ -12,11 +12,16 @@ use Carbon\Carbon;
 class RegisterOfAppointmentController extends Controller
 {
     public function showAllFreeAppointment(){
-        return Appointments::freeAppointments();
+        return json_encode(Appointments::freeAppointments());
     }
     public function RegisterOnAppointment(Request $request) {
-        $test = new registerOfAppointment($request->licence);
-        return $test->register();
+        $register = new registerOfAppointment($request->licence, $request->id);
+        return json_encode($register->register());
+    }
+    public function RegisterOnFirstAppointment(Request $request) {
+
+        $register = new registerOfAppointment($request->licence);
+        return json_encode($register->registerOnFirstFreeAppointment());
     }
     // //Podajemy numer tablicy = licence i id terminu - appointment
     // public function RegisterOnAppointment(Request $request) {
