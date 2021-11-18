@@ -27,7 +27,6 @@ class registerOfAppointment {
     public function registerOnFirstFreeAppointment(){
         try{
             $appointment = Appointments::firstFreeAppointment();
-            // dd($appointment);
             if(isset($appointment)){
                 $validation = new validationAppointment($this->licence, $appointment->id);
                 $validation->validate();

@@ -14,60 +14,21 @@ class RegisterOfAppointmentController extends Controller
     public function showAllFreeAppointment(){
         return json_encode(Appointments::freeAppointments());
     }
+    
     public function RegisterOnAppointment(Request $request) {
         $register = new registerOfAppointment($request->licence, $request->id);
         return json_encode($register->register());
     }
-    public function RegisterOnFirstAppointment(Request $request) {
 
+    public function RegisterOnFirstAppointment(Request $request) {
         $register = new registerOfAppointment($request->licence);
         return json_encode($register->registerOnFirstFreeAppointment());
     }
-    // //Podajemy numer tablicy = licence i id terminu - appointment
-    // public function RegisterOnAppointment(Request $request) {
-    //     try{
-    //         $flag = 1;
 
-    //         $appointment = Appointments::find($request->appointment_id);
-    //         if(!$appointment){
-    //             $flag = 0;
-    //             if($appointment->appointment < Carbon::now()){
-    //                 $flag = 0;
-    //             }
-    //             if($appointment->licence_plate !== null){
-    //                 $flag = 0;
-    //             }
-    //         }
-    //         if($flag == 1){
-    //             $appointment->licence_plate = $request->licence;
-    //             $appointment->save();
-    //             return 'Zapisano';
+    public function releaseAppointment(Request $request){
+        $appointment = Appointments::registeremAppointment($request->licence);          
+        $appointment->licence_plate = null;
+        $appointment->save();
+    }
 
-    //         } else {
-    //             throw new Exception('Nie można tego zapisać w bazie danych');
-    //         }
-    //     } catch(Exception $e){
-    //         return $e;
-    //     }
-
-    // }
-
-    // public function registerOnFirstAppointment(Request $request){
-    //     $appointment = Appointments::where('appointment', '>', Carbon::now())
-    //                                ->where('licence_plate', null)
-    //                                ->orderBy('appointment', 'asc')
-    //                                ->first();
-    //     $appointment->licence_plate = $request->licence;
-    //     $appointment->save();
-
-    //     return json_encode($appointment);
-    // }
-
-    // public function releaseAppointment(Request $request){
-    //     $appointment = Appointments::where('appointment', '>', Carbon::now())
-    //                                 ->where('licence_plate', $request->licence)
-    //                                 ->first();
-    //     $appointment->licence_plate = null;
-    //     $appointment->save();
-    // }
 }

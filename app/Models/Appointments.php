@@ -24,5 +24,11 @@ class Appointments extends Model
         return $freeApointment;
     }
 
+    public function registeremAppointment($licence){
+        $appointment = Appointments::where('appointment', '>', Carbon::now())
+                    ->where('licence_plate', $licence)
+                    ->first();
+        return $appointment;
+    }
 
 }
