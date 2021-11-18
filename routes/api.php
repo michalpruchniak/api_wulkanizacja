@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterOfAppointmentController;
+use App\Http\Controllers\AdminConroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Route::get('/free-appointments', [RegisterOfAppointmentController::class, 'showA
 Route::post('/register-on-appointment', [RegisterOfAppointmentController::class, 'RegisterOnAppointment']);
 Route::post('/register-on-first-appointment', [RegisterOfAppointmentController::class, 'RegisterOnFirstAppointment']);
 Route::post('/release-appointment', [RegisterOfAppointmentController::class, 'releaseAppointment']);
+
+Route::get('/busy', [AdminConroller::class, 'showAllBusyAppointment'])
+->middleware('AuthorizationToken');
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Model\Reservation;
 use App\Models\Appointments;
 use App\libraries\registerOfAppointment;
 use App\Http\libraries\appointmentsLibrary;
