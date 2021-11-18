@@ -27,4 +27,6 @@ Route::post('/release-appointment', [RegisterOfAppointmentController::class, 're
 
 Route::get('/busy', [AdminConroller::class, 'showAllBusyAppointment'])
 ->middleware('AuthorizationToken');
+Route::get('/all', [AdminConroller::class, 'showAllAppointment'])
+->middleware('AuthorizationToken');
 

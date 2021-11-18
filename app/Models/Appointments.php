@@ -10,11 +10,11 @@ class Appointments extends Model
 {
     use HasFactory;
     protected $fillable = ['appointment', 'reservation_id'];
-        public function freeAppointments() {
-            $freeApointment = static::where('licence_plate', null)
-                                    ->where('appointment','>',Carbon::now())
-                                    ->get();
-            return $freeApointment;
+    public function freeAppointments() {
+        $freeApointment = static::where('licence_plate', null)
+                                ->where('appointment','>',Carbon::now())
+                                ->get();
+        return $freeApointment;
     }
     
     public function firstFreeAppointment() {
@@ -31,4 +31,9 @@ class Appointments extends Model
         return $appointment;
     }
 
+    public function busyAppointment(){
+        $appointment = Appointments::where('licence_plate', '!=',  null)
+                                  ->get();
+        return $appointment;
+    }
 }
