@@ -18,7 +18,7 @@ class registerOfAppointment {
             $validation = new validationAppointment($this->licence, $this->id);
             $validation->validate();
             $this->storeLicence();
-            
+
             return 'Termin zostal zarezerwowany';
         } catch(Exception $exception) {
             return $exception->getMessage();
