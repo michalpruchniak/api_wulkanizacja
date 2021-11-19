@@ -41,6 +41,7 @@ class registerOfAppointment {
             return $exception->getMessage();
         }
     }
+    
 
     private function storeLicence(){
         try {

@@ -1,3 +1,17 @@
+## Uruchomienie projektu
+1. Klonujemy projekt na dysk
+2. Zmieniamy nazwę pliku .env.example na .env
+3. Konfigurujemy plik .env do pracy z bazą danych
+4. Odpalamy
+```
+composer install
+php artisan migrate:refresh
+```
+5. Do pliku .env dodajemy token, który będzie nam potrzeby do autoryzacja zapytań administratora, np.
+```
+AUTHORIZATION_TOKEN=VRQwv9mqSWksatTf4LdVFAjZ35Tycs
+```
+
 ## Zapytania nie wymagające autoryzacji
 Pokaż wszystkie wolne terminy
 ```

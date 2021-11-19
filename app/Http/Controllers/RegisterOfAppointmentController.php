@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Appointments;
 use App\libraries\registerOfAppointment;
 use App\Http\libraries\appointmentsLibrary;
-use App\Http\Requests\RegisterAppointmentRequest;
+use Valdiatior;
 use Carbon\Carbon;
 
 class RegisterOfAppointmentController extends Controller
@@ -26,7 +26,7 @@ class RegisterOfAppointmentController extends Controller
     }
 
     public function resignAppointment(Request $request){
-        $appointment = Appointments::registeremAppointment($request->licence);          
+        $appointment = Appointments::registerAppointment($request->licence);          
         $appointment->licence_plate = null;
         $appointment->save();
         return 'Zrezygnowales z zaplanowanego terminu';

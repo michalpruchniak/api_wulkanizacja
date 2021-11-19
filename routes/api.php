@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/free-appointments', [RegisterOfAppointmentController::class, 'showAllFreeAppointment']);
 Route::post('/register-on-appointment', [RegisterOfAppointmentController::class, 'RegisterOnAppointment']);
 Route::post('/register-on-first-appointment', [RegisterOfAppointmentController::class, 'RegisterOnFirstAppointment']);
-Route::post('/resign-appointment', [RegisterOfAppointmentController::class, 'releaseAppointment']);
+Route::post('/resign', [RegisterOfAppointmentController::class, 'resignAppointment']);
 
 Route::prefix('admin')->middleware(['AuthorizationToken'])->group(function(){
     Route::get('/busy-appointments', [AdminConroller::class, 'showAllBusyAppointment']);
