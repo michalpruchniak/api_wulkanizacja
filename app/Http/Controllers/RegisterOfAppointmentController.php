@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Appointments;
 use App\libraries\registerOfAppointment;
+use App\libraries\menageAppointment;
 use App\Http\libraries\appointmentsLibrary;
-use Valdiatior;
 use Carbon\Carbon;
 
 class RegisterOfAppointmentController extends Controller
@@ -26,10 +26,7 @@ class RegisterOfAppointmentController extends Controller
     }
 
     public function resignAppointment(Request $request){
-        $appointment = Appointments::registerAppointment($request->licence);          
-        $appointment->licence_plate = null;
-        $appointment->save();
-        return 'Zrezygnowales z zaplanowanego terminu';
+        return json_encode(MenageAppointment::resign($request->licence));
     }
 
 }

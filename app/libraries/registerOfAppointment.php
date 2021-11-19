@@ -24,6 +24,7 @@ class registerOfAppointment {
             return $exception->getMessage();
         }
     }
+    
     public function registerOnFirstFreeAppointment(){
         try{
             $appointment = Appointments::firstFreeAppointment();
@@ -42,7 +43,6 @@ class registerOfAppointment {
         }
     }
     
-
     private function storeLicence(){
         try {
             $appointment = Appointments::find($this->id);

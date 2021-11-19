@@ -10,7 +10,7 @@ use Exception;
                 $appointment->appointment = $date;
                 $appointment->save();
                 return 'Termin został dodany';
-            } catch (Exceptio $exception){
+            } catch (Exception $exception){
                 return $exception;
             }
         }
@@ -20,8 +20,18 @@ use Exception;
                 $appointment = Appointments::findOrFail($id);
                 $appointment->delete();
                 return 'Termin został usuniety';
-            } catch(Error $error){
-                return $error;
+            } catch(Exception $exception){
+                return $exception;
+            }
+        }
+        public static function resign($licence){
+            try{
+                $appointment = Appointments::registerAppointment($licence);          
+                $appointment->licence_plate = null;
+                $appointment->save();
+                return 'Zrezygnowales z wybranego terminu';
+            } catch(Exception $exception){
+                return $exception;
             }
         }
     }
