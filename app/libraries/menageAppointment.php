@@ -11,7 +11,7 @@ use Exception;
                 $appointment->save();
                 return 'Termin został dodany';
             } catch (Exception $exception){
-                return $exception;
+                return 'Nie udalo sie dodac terminu. Sprawdz, czy wszystkie pola maja odpowiedni format';
             }
         }
 
@@ -21,7 +21,7 @@ use Exception;
                 $appointment->delete();
                 return 'Termin został usuniety';
             } catch(Exception $exception){
-                return $exception;
+                return 'Nie udalo sie usunac tego terminu';
             }
         }
 
@@ -32,7 +32,7 @@ use Exception;
                 $appointment->save();
                 return 'Zrezygnowales z wybranego terminu';
             } catch(Exception $exception){
-                return $exception;
+                return 'Nie mozesz tego zrobic';
             }
         }
     }
