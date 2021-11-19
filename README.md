@@ -1,3 +1,23 @@
+## Zapytania nie wymagające autoryzacji
+Pokaż wszystkie wolne terminy
+```
+axios.get('localhost:8000/api/free-appointments')
+     .then((res) => {
+         //dalsza część kodu
+     })
+```
+Zarejestruj na wybrany termin:
+Jako id podajemy id naszego terminu (tworzymy go z poziomu konta administratora)
+```
+axios.post('localhost:8000/api/register-on-appointment', {
+                id: 1,
+                licence: 'LU562344',
+           })
+     .then((res) => {
+         //dalsza część kodu
+     })
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
