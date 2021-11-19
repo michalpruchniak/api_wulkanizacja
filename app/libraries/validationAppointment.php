@@ -14,10 +14,11 @@ class validationAppointment {
         $this->licence = $licence;
     }
     public function validate(){
-            $this->issetLicence();
-            $this->appointmentExist();
-            $this->appointmentIsInFuture();
-            $this->appointmentIsFree();
+        $this->issetLicence();
+        $this->appointmentExist();
+        $this->appointmentIsInFuture();
+        $this->appointmentIsFree();
+        $this->onlyOneAppointment();
     }
 
     private function issetLicence(){
@@ -49,6 +50,15 @@ class validationAppointment {
             return true;
         } else {
             throw new Exception('Ten termin jest juz zajety.');
+        }
+    }
+
+    private function onlyOneAppointment(){
+    
+        if(Appointments::reservationAlreadyExist($this->licence) < 1){
+            return true;
+        } else {
+            throw new Exception('Jestes juz zarejestrowany.');
         }
     }
 }

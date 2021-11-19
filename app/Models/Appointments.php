@@ -36,4 +36,12 @@ class Appointments extends Model
                                   ->get();
         return $appointment;
     }
+
+
+    public function reservationAlreadyExist($licence){
+        $appointment = Appointments::where('licence_plate', $licence)
+                                   ->where('appointment', '>', Carbon::now())
+                                   ->count();
+        return $appointment;
+    }
 }

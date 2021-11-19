@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Appointments;
 use App\libraries\registerOfAppointment;
 use App\Http\libraries\appointmentsLibrary;
+use App\Http\Requests\RegisterAppointmentRequest;
 use Carbon\Carbon;
 
 class RegisterOfAppointmentController extends Controller
