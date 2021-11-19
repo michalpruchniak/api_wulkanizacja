@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Appointments;
+use App\libraries\menageAppointment;
 
 
 class AdminConroller extends Controller
@@ -17,25 +18,10 @@ class AdminConroller extends Controller
     }
 
     public function addNewAppointment(Request $request){
-        try{
-            $appointment = new Appointments;
-            $appointment->appointment = $request->date;
-            $appointment->save();
-
-            return 'Termin został dodany';
-        } catch (Exceptio $exception){
-            return $exception;
-        }
+        return MenageAppointment::add($request->date);
     }
 
     public function delAppointment(Request $request) {
-        try{
-            $appointment = Appointments::findOrFail($request->id);
-            $appointment->delete();
-
-            return 'Termin został usuniety';
-        } catch(Error $error){
-            return $error;
-        }
+        return MenageAppointment::del($request->id);
     }
 }
