@@ -24,7 +24,7 @@ class RegisterOfAppointmentController extends Controller
         return json_encode($register->registerOnFirstFreeAppointment());
     }
 
-    public function releaseAppointment(Request $request){
+    public function resignAppointment(Request $request){
         $appointment = Appointments::registeremAppointment($request->licence);          
         $appointment->licence_plate = null;
         $appointment->save();

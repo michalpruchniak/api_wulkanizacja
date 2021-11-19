@@ -23,14 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/free-appointments', [RegisterOfAppointmentController::class, 'showAllFreeAppointment']);
 Route::post('/register-on-appointment', [RegisterOfAppointmentController::class, 'RegisterOnAppointment']);
 Route::post('/register-on-first-appointment', [RegisterOfAppointmentController::class, 'RegisterOnFirstAppointment']);
-Route::post('/release-appointment', [RegisterOfAppointmentController::class, 'releaseAppointment']);
+Route::post('/resign-appointment', [RegisterOfAppointmentController::class, 'releaseAppointment']);
 
-Route::get('/busy-appointments', [AdminConroller::class, 'showAllBusyAppointment'])
-->middleware('AuthorizationToken');
-Route::get('/all-appointments', [AdminConroller::class, 'showAllAppointment'])
-->middleware('AuthorizationToken');
-Route::post('/add-new-appointment', [AdminConroller::class, 'addNewAppointment'])
-->middleware('AuthorizationToken');
-Route::post('/del-appointment', [AdminConroller::class, 'delAppointment'])
-->middleware('AuthorizationToken');
+Route::prefix('admin')->middleware(['AuthorizationToken'])->group(function(){
+    Route::get('/busy-appointments', [AdminConroller::class, 'showAllBusyAppointment']);
+    Route::get('/all-appointments', [AdminConroller::class, 'showAllAppointment']);
+    Route::post('/add-new-appointment', [AdminConroller::class, 'addNewAppointment']);
+    Route::post('/del-appointment', [AdminConroller::class, 'delAppointment']);
+});
+
 
