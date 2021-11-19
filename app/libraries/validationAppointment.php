@@ -38,7 +38,7 @@ class validationAppointment {
     }
 
     private function appointmentIsInFuture(){
-        if($this->appointment->appointment >= Carbon::now()){
+        if($this->appointment->date >= Carbon::now()){
             return true;
         } else {
             throw new Exception('Wybrano zly termin.');
@@ -54,7 +54,6 @@ class validationAppointment {
     }
 
     private function onlyOneAppointment(){
-    
         if(Appointments::reservationAlreadyExist($this->licence) < 1){
             return true;
         } else {

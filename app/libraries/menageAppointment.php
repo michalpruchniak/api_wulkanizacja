@@ -7,7 +7,7 @@ use Exception;
         public static function add($date){
             try{
                 $appointment = new Appointments;
-                $appointment->appointment = $date;
+                $appointment->date = $date;
                 $appointment->save();
                 return 'Termin został dodany';
             } catch (Exception $exception){
@@ -24,6 +24,7 @@ use Exception;
                 return $exception;
             }
         }
+
         public static function resign($licence){
             try{
                 $appointment = Appointments::registerAppointment($licence);          

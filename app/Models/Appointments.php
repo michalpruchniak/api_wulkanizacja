@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class Appointments extends Model
 {
     use HasFactory;
-    protected $fillable = ['appointment', 'reservation_id'];
+    protected $fillable = ['date', 'licence_plate'];
     public function freeAppointments() {
         $freeApointment = static::where('licence_plate', null)
                                 ->where('appointment','>',Carbon::now())
